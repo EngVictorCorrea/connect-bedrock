@@ -5,7 +5,7 @@ export interface PostRecipeRequest {
     ];
     preparationMethod: [
         string
-    ]
+    ];
 }
 
 interface Ingredient {

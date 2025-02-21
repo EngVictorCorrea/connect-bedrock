@@ -17,14 +17,14 @@ export const postRecipeHandlerAsync = async (req: Request, res: Response) => {
             Avalie se isso é realmente uma receita (0 a 10) e o tom da linguagem (0 a 10), retorne 
         `;
 
-        const response = await axios.post("https://api.bedrock.aws.com/avaliar", {
-            prompt,
-            model: "amazon-titan-txt",
-        }, {
-            headers: { Authorization: `Bearer ${process.env.AWS_BEDROCK_KEY}` }
-        });
+        // const response = await axios.post("https://api.bedrock.aws.com/avaliar", {
+        //     prompt,
+        //     model: "amazon-titan-txt",
+        // }, {
+        //     headers: { Authorization: `Bearer ${process.env.AWS_BEDROCK_KEY}` }
+        // });
 
-        res.status(201).json(response.data);
+        res.status(201);
         
     } catch (error) {
         console.error(error);

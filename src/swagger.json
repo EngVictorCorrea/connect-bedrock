@@ -1,19 +1,66 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "title": "API do shared recipe",
-      "version": "1.0.0"
-    },
-    "paths": {
-      "/api/v1/recipes": {
-        "post": {
-          "summary": "Create new recipe",
-          "responses": {
-            "201": {
-              "description": "New recipe is created"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API do shared recipe",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/recipes": {
+      "post": {
+        "summary": "Create new recipe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostRecipeRequest"
+              }
             }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New recipe is created"
           }
         }
       }
     }
+  },
+  "components": {
+    "schemas": {
+      "PostRecipeRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ingredient"
+            }
+          },
+          "preparationMethod": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["title", "ingredients", "preparationMethod"]
+      },
+      "Ingredient": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["quantity", "description"]
+      }
+    }
   }
+}
